@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{meg}}
+    <form action="" method="post">
+        {%csrf_token%}
+        <h1>student data</h1>
+        <label for="name">name:</label>
+        <input type="text" name="name" placeholder="Enter the name">
+
+        <label for="email">email:</label>
+        <input type="text" name="email" placeholder="Enter the emial">
+
+        <label for="age">age:</label>
+        <input type="text" name="age" placeholder="Enter the age">
+
+        <label for="dob">dob:</label>
+        <input type="date" name="dob" placeholder="Enter the date of birth">
+
+        <input type="submit">
+    </form>
+</body>
+</html>
