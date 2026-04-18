@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Form</title>
+</head>
+<body>
+
+<h2>Add Product</h2>
+
+<form action="{%url 'addproduct'%}" method="post">
+    {% csrf_token %}
+
+    <label>Category:</label><br>
+    <select name="category">
+        <option value="">------Select Category------</option>
+        {% for i in categories %}
+            <option value="{{ i.id }}">{{ i.name }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+
+    <label>Name:</label><br>
+    <input type="text" name="name" placeholder="Enter product name">
+    <br><br>
+
+    <label>Price:</label><br>
+    <input type="number" name="price" placeholder="Enter product price">
+    <br><br>
+
+    <label>Quantity:</label><br>
+    <input type="number" name="qty" placeholder="Enter product quantity">
+    <br><br>
+
+    <input type="submit" value="Add Product">
+</form>
+
+<table class="table table-bordered table-hover text-center align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Category</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for product in products%}
+                        <tr>
+                            <td>{{product.id}}</td>
+                            <td>{{product.name}}</td>
+                            <td>{{product.price}}</td>
+                            <td>{{product.qty}}</td>
+                            <td>{{product.category.name}}</td>
+                            <td class="fw-bold text-primary">{{product.total}}</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+
+</body>
+</html>
