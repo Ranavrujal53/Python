@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Product Page{% endblock title %}
+{% block body %}
+    {{msg}}
+    <h1>Product from</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="name">Product Name</label>
+        <input type="text" name="name" placeholder="Enter the Product name"><br><br>
+
+        <label for="price">Price</label>
+        <input type="number" name="price" placeholder="Enter the price"><br><br>
+
+        <label for="stock">Stock</label>
+        <input type="number" name="stock" placeholder="Enter the stock"><br><br>
+
+        <input type="submit"><br><br>
+    </form>
+
+    <hr>
+
+    <table border="5" cellspacing="10" cellpadding="10">
+        <tr>
+            <td>Id</td>
+            <td>Product Name</td>
+            <td>Price</td>
+            <td>Stock</td>
+        </tr>
+        {% for i in pr %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.price}}</td>
+            <td>{{i.stock}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

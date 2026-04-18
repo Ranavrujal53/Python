@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}    
+<h1>Employee from</h1>
+{{msg}}
+<form action="" method="post">
+        {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" name="name" placeholder="Enter the name"><br><br>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Enter the email"><br><br>
+
+        <label for="dept">Deparment</label>
+        <input type="text" name="dept" placeholder="Enter the dept"><br><br>
+
+        
+        <label for="Salary">Salary</label>
+        <input type="number" name="salary" placeholder="Enter the Sala"><br><br>
+
+        <input type="submit"><br><br>
+    </form>
+
+    <hr>
+
+    <table border="5" cellspacing="10" cellpadding="10">
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Deparment</td>
+            <td>Salary</td>
+        </tr>
+        {% for i in em %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.dept}}</td>
+            <td>{{i.salary}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock body %}
