@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Student{% endblock title %}
+{% block body %}
+<div class="form-container">
+   {% if msg %}
+        <div class="msg show">{{ msg }}</div>
+    {% endif %}
+    <form action="{% url 'index' %}" method="post">
+    <h1>Student data</h1>
+    {%csrf_token%}
+    <label for="name">name</label>
+    <input type="text" name="name" placeholder="Enter the student name" required><br><br>
+
+    <label for="email">Email</label>
+    <input type="text" name="email" placeholder="Enter the student email"required><br><br>
+
+    <label for="age">Age</label>
+    <input type="text" name="age" placeholder="Enter student age"required><br><br>
+
+    <input type="submit"><br><br>
+    </form>
+</div>
+
+    {% endblock body %}

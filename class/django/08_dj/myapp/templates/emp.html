@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Employees{% endblock title %}
+{% block body %}
+
+<div class="form-container">
+   {% if msg %}
+        <div class="msg show">{{ msg }}</div>
+    {% endif %}
+    <form action="{% url 'emp' %}" method="post">
+    <h1>Employee data</h1>
+    {%csrf_token%}
+    <label for="name">name</label>
+    <input type="text" name="name" placeholder="Enter the emp name"required><br><br>
+
+    <label for="salary">Salary</label>
+    <input type="text" name="salary" placeholder="Enter the emp salary"required><br><br>
+
+    <label for="dept">Deprament</label>
+    <input type="text" name="dept" placeholder="Enter emp dept"required><br><br>
+
+    <label for="address">Address</label>
+    <input type="text" name="addess" placeholder="Enter emp address"required><br><br>
+
+    <input type="submit"><br><br>
+    </form>
+</div>
+
+    {% endblock body %}

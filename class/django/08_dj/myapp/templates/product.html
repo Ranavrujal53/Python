@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Product{% endblock title %}
+{% block body %}
+<div class="form-container">
+   {% if msg %}
+        <div class="msg show">{{ msg }}</div>
+    {% endif %}
+    {{msg}}
+    <form action="{% url 'product' %}" method="post">
+    <h1>Product data</h1>
+    {%csrf_token%}
+    <label for="name">product name</label>
+    <input type="text" name="pr_name" placeholder="Enter the Product name"required><br><br>
+
+    <label for="quntity">Quentity</label>
+    <input type="text" name="quntity" placeholder="Enter the product quntity"required><br><br>
+
+    <label for="price">Price</label>
+    <input type="text" name="price" placeholder="Enter product price"required><br><br>
+
+    <label for="stock">stock</label>
+    <input type="text" name="stock" placeholder="Enter product stock"required><br><br>
+
+    <input type="submit"><br><br>
+    </form>
+</div>
+    {% endblock body %}
