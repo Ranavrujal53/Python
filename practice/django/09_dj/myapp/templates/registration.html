@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+            color: #1e293b;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 40px;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.4);
+        }
+
+        .logo {
+            font-weight: 600;
+        }
+
+        .nav-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #334155;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* CENTER */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* GLASS FORM */
+        .form-box {
+            width: 100%;
+            max-width: 750px;
+            padding: 40px;
+            border-radius: 15px;
+
+            background: rgba(255,255,255,0.3); /* transparent */
+            backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+            transition: 0.3s;
+        }
+
+        .form-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .form-box h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* GRID */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .full {
+            grid-column: span 2;
+        }
+
+        /* INPUT */
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.6);
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            background: white;
+        }
+
+        /* BUTTON */
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #2563eb;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .msg {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-link a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Rana Vrujal</div>
+
+    <div class="nav-links">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'login' %}">Login</a>
+    </div>
+</div>
+
+<!-- FORM -->
+<div class="hero">
+
+    <div class="form-box">
+
+        <h1>Create Account</h1>
+
+        <form action="{% url 'registration' %}" method="post" onsubmit="return validateForm()">
+            {% csrf_token %}
+
+            <div class="msg">{{msg}}</div>
+
+            <div class="form-grid">
+
+                <!-- LEFT -->
+                <input type="text" name="username" id="username" placeholder="Username">
+                <input type="email" name="email" id="email" placeholder="Email">
+
+                <!-- RIGHT -->
+                <input type="text" name="mobilenumber" id="mobile" placeholder="Mobile Number">
+                <input type="password" name="password" id="password" placeholder="Password">
+
+                <!-- FULL -->
+                <textarea name="address" placeholder="Address" class="full"></textarea>
+                <input type="date" name="dob" class="full">
+
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="{% url 'login' %}">Login</a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- JS -->
+<script>
+    function validateForm() {
+        let username = document.getElementById("username").value;
+        let email = document.getElementById("email").value;
+        let mobile = document.getElementById("mobile").value;
+        let password = document.getElementById("password").value;
+
+        if (!username || !email || !mobile || !password) {
+            alert("All fields are required!");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+</body>
+</html>

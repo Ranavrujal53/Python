@@ -1,0 +1,17 @@
+from django.db import models
+
+class Register(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    password = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class Order(models.Model):
+    product = models.CharField(max_length=100)
+    quantity = models.IntegerField()
+
+    def __str__(self):
+        return self.product

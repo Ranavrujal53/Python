@@ -1,0 +1,7 @@
+def multi(a,b):
+    return a * b
+
+a=int(input("Enter the first number:"))
+b=int(input("Enter the second number:"))
+
+print("multpiction = ",multi(a,b))

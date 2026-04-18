@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{%load static%}
+
+{%block tilte%} Home {%endblock%}
+
+{%block body%}
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #141e30, #243b55);
+}
+
+/* Container */
+.container {
+    perspective: 1000px;
+}
+
+/* Image */
+.tilt-img {
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    object-fit: cover;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+</style>
+
+
+<h1> Home</h1>
+
+<div class="container">
+<img src="static/images/img.png" class="tilt-img" id="tiltImage">
+</div>
+
+<script>
+const img = document.getElementById("tiltImage");
+
+img.addEventListener("mousemove", (e) => {
+    const rect = img.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;  // mouse X
+    const y = e.clientY - rect.top;   // mouse Y
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = -(y - centerY) / 10; // up-down tilt
+    const rotateY = (x - centerX) / 10;  // left-right tilt
+
+    img.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+});
+
+img.addEventListener("mouseleave", () => {
+    img.style.transform = "rotateX(0) rotateY(0) scale(1)";
+});
+</script>
+
+{%endblock%}

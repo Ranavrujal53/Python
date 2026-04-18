@@ -1,0 +1,11 @@
+<h1>Add Student</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Name"><br><br>
+    <input type="email" name="email" placeholder="Email"><br><br>
+    <input type="number" name="age" placeholder="Age"><br><br>
+    <button type="submit">Add</button>
+</form>
+
+<a href="{% url 'show' %}">View Students</a>

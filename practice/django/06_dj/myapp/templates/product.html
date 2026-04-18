@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Product{% endblock title %}
+
+{% block body %}
+<div class="container">
+<p class="msg">{{meg}}</p>
+        <form action="" method="POST">
+            {%csrf_token%}
+        <h1>Product Detail</h1>
+
+        <label for="name">Product Name:</label>
+        <input type="text" name="name" placeholder="Enter the Product name">
+
+        <label for="price">price:</label>
+        <input type="text" name="price" placeholder="Enter the price">
+
+        <label for="stock">stock:</label>
+        <input type="text" name="stock" placeholder="Enter the Product stock">
+
+        <label for="dec">Descrption:</label>
+        <input type="text" name="dec" placeholder="Enter the Product Descrption">
+
+        <input type="submit">
+
+    </form>
+</div>
+
+{% endblock body %}

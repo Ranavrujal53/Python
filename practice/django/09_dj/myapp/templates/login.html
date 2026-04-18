@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 40px;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .nav-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #475569;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* CENTER SECTION */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* LOGIN BOX */
+        .login-box {
+            width: 100%;
+            max-width: 450px;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            text-align: center;
+
+            /* animation */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.6s ease;
+        }
+
+        .login-box.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .login-box h1 {
+            margin-bottom: 20px;
+        }
+
+        /* INPUT */
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        /* BUTTON */
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 18px;
+            background: #2563eb;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        /* MESSAGE */
+        .msg {
+            color: red;
+            font-size: 14px;
+        }
+
+        /* LINK */
+        .register-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .register-link a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Rana Vrujal</div>
+
+    <div class="nav-links">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'registration' %}">Register</a>
+    </div>
+</div>
+
+<!-- LOGIN SECTION -->
+<div class="hero">
+
+    <div class="login-box" id="loginBox">
+
+        <h1>Login</h1>
+
+        <form action="{% url 'login' %}" method="post" onsubmit="return validateForm()">
+            {% csrf_token %}
+
+            <div class="msg">{{msg}}</div>
+
+            <input type="text" name="username" id="username" placeholder="Enter Username">
+            <input type="password" name="password" id="password" placeholder="Enter Password">
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="register-link">
+            New user? <a href="{% url 'registration' %}">Create Account</a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+    // ANIMATION ON LOAD
+    window.addEventListener("load", function () {
+        document.getElementById("loginBox").classList.add("show");
+    });
+
+    // VALIDATION
+    function validateForm() {
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+
+        if (username === "" || password === "") {
+            alert("All fields are required!");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+</body>
+</html>

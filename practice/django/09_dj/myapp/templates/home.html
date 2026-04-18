@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rana Vrujal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 40px;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .nav-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #475569;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #64748b;
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* PROJECTS */
+        .projects {
+            padding: 60px 40px;
+        }
+
+        .projects h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            padding: 20px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #cbd5f5;
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #64748b;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* SOFT ANIMATION */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Rana Vrujal</div>
+
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Projects</a>
+
+        {% if request.session.username %}
+            <a href="#">{{ request.session.username }}</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero fade-up">
+    <h1>Hello, I'm Rana Vrujal</h1>
+    <p>Full Stack Developer (Django, PHP)</p>
+    <button class="btn">View Work</button>
+</div>
+
+<!-- PROJECTS -->
+<div class="projects">
+    <h2 class="fade-up">Projects</h2>
+
+    <div class="grid">
+
+        <div class="card fade-up">
+            <h3>Grain Store</h3>
+            <p>Django-based system</p>
+        </div>
+
+        <div class="card fade-up">
+            <h3>Headphone Store</h3>
+            <p>E-commerce project</p>
+        </div>
+
+        <div class="card fade-up">
+            <h3>Portfolio</h3>
+            <p>Modern responsive UI</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer fade-up">
+    © 2026 Rana Vrujal
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+    const elements = document.querySelectorAll(".fade-up");
+
+    function showOnScroll() {
+        elements.forEach(el => {
+            const top = el.getBoundingClientRect().top;
+
+            if (top < window.innerHeight - 50) {
+                el.classList.add("show");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", showOnScroll);
+    window.addEventListener("load", showOnScroll);
+</script>
+
+</body>
+</html>

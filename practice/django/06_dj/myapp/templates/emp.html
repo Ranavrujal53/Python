@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Emp{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <p class="msg">{{meg}}</p>
+    <form action="" method="POST">
+
+        {%csrf_token%}
+        <h1>Employess Detail</h1>
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" placeholder="Enter the emp name">
+
+        <label for="email">Email:</label>
+        <input type="text" name="email" placeholder="Enter the emp email">
+
+        <label for="salary">Salary:</label>
+        <input type="text" name="salary" placeholder="Enter the emp salary">
+
+        <label for="dept">Department:</label>
+        <input type="text" name="dept" placeholder="Enter the emp Department">
+
+        <input type="submit">
+
+    </form>
+</div>
+
+{% endblock body %}
