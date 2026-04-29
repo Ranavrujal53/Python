@@ -195,7 +195,8 @@
             <td>{{i.name}}</td>
             <td>{{i.email}}</td>
             <td>{{i.age}}</td>
-            <td><a href="{% url 'delete' %}?dele={{ i.id }}">Delete</a></td>
+            <td><a href="{% url 'delete' %}?
+                ={{ i.id }}">Delete</a></td>
             <td><a href="{% url 'update' %}?uid={{ i.id }}">Update</a></td>
         </tr>
         {% endfor %}
