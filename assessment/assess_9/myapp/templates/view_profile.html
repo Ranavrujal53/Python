@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ profile.username }}'s Profile - SocialHub{% endblock %}
+
+{% block content %}
+
+<div class="container py-5 animate-fade-in">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <div class="glass-card">
+
+                <!-- TOP PROFILE SECTION -->
+                <div class="p-5 text-center border-bottom">
+
+                    <div class="profile-avatar mx-auto mb-3"
+                         style="width:110px;height:110px;font-size:2.5rem;border-radius:24px;">
+                        {{ profile.username|first|upper }}
+                    </div>
+
+                    <h2 class="fw-bold mb-1">
+                        {{ profile.username }}
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        {{ profile.age }} years old • Member of SocialHub
+                    </p>
+
+                </div>
+
+                <!-- CONTENT SECTION -->
+                <div class="p-5">
+
+                    <!-- STATUS ROW -->
+                    <div class="row g-4 mb-4">
+
+                        <div class="col-md-6">
+
+                            <div class="p-4 border rounded-4 bg-light h-100">
+
+                                <div class="text-muted small text-uppercase fw-semibold mb-2">
+                                    Account Status
+                                </div>
+
+                                {% if profile.is_public %}
+                                    <div class="text-success fw-bold">
+                                        <i class="bi bi-globe me-2"></i>Public Profile
+                                    </div>
+                                {% else %}
+                                    <div class="text-secondary fw-bold">
+                                        <i class="bi bi-lock-fill me-2"></i>Private Profile
+                                    </div>
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="p-4 border rounded-4 bg-light h-100">
+
+                                <div class="text-muted small text-uppercase fw-semibold mb-2">
+                                    Member Since
+                                </div>
+
+                                <div class="fw-bold">
+                                    2026
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ACTION BUTTONS -->
+                    <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
+
+                        <a href="{% url 'update_profile' profile.pk %}"
+                           class="btn btn-primary px-4 py-2 rounded-pill">
+
+                            <i class="bi bi-pencil-square me-2"></i>
+                            Edit Profile
+
+                        </a>
+
+                        <a href="{% url 'delete_profile' profile.pk %}"
+                           class="btn btn-outline-danger px-4 py-2 rounded-pill">
+
+                            <i class="bi bi-trash3 me-2"></i>
+                            Delete Profile
+
+                        </a>
+
+                    </div>
+
+                    <!-- BACK LINK -->
+                    <div class="text-center mt-5">
+
+                        <a href="{% url 'list_profiles' %}"
+                           class="text-muted text-decoration-none">
+
+                            <i class="bi bi-arrow-left me-1"></i>
+                            Back to Community
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
